@@ -11,29 +11,31 @@ function generatePassword(){
   var pWLength = parseInt(prompt("Please enter password length btw 8-128.", "8"), 10)
 
   var requestedSets = []
-
-  if (hasUppercase) {
-    requestedSets.push('U');
-  }
-  if (hasLowercase) {
-    requestedSets.push('L');
-  }
-  if (hasNums) {
-    requestedSets.push('N');
-  }
-  if (hasSpecialChar) {
-    requestedSets.push('S');
-  }
-
-  // generate password characters
+  var pWBuffer = []
   var upperCaseSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
   var lowerCaseSet = "abcdefghijklmnopqrstuvwxyz"
   var numSet = "0123456789"
   var specialSet = "!#$%_&- *"
 
-  var pWBuffer = []
+  if (hasUppercase) {
+    requestedSets.push('U');
+    pWBuffer.push(getRandomCharFromSet(upperCaseSet));
+  }
+  if (hasLowercase) {
+    requestedSets.push('L');
+    pWBuffer.push(getRandomCharFromSet(lowerCaseSet));
+  }
+  if (hasNums) {
+    requestedSets.push('N');
+    pWBuffer.push(getRandomCharFromSet(numSet));
+  }
+  if (hasSpecialChar) {
+    requestedSets.push('S');
+    pWBuffer.push(getRandomCharFromSet(specialSet));
+  }
 
-  for ( i= 0; i < pWLength; i++) {
+  // generate password characters
+  for ( i= pWBuffer.length; i < pWLength; i++) {
     var setDice = Math.floor(Math.random() * requestedSets.length);
     var selectedSet = requestedSets[setDice];
     var selectedChar = ' '
@@ -48,7 +50,7 @@ function generatePassword(){
       selectedChar = getRandomCharFromSet(specialSet)
     }
     
-    pWBuffer.push(getRandomCharFromSet(upperCaseSet));
+    pWBuffer.push(selectedChar);
   }
   
   return pWBuffer.join("");
