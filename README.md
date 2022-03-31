@@ -8,8 +8,10 @@ Depending on their answers, it generates a password with at east 1 char from the
 links to my homework:
 
 GitHub:
+https://github.com/sevalc/SC_PasswordGenerator
 
-
+URL:
+https://sevalc.github.io/SC_PasswordGenerator/
 
 
 
